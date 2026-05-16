@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitesh Sharma - Cybersecurity Resume</title>
+  <style>
+    :root {
+      --green: #00ff88;
+      --green-soft: rgba(0, 255, 136, 0.08);
+      --green-line: rgba(0, 255, 136, 0.24);
+      --green-strong: rgba(0, 255, 136, 0.58);
+      --bg: #07100c;
+      --panel: #0a1912;
+      --panel-2: #0d2118;
+      --text: #e6fff2;
+      --muted: #8fc9aa;
+      --dim: #5f9277;
+      --gold: #f2c14e;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      padding: 24px 14px;
+      background: #09110d;
+      color: var(--text);
+      font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    }
+
+    .toolbar {
+      width: 210mm;
+      max-width: 100%;
+      margin: 0 auto 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 0.8px;
+    }
+
+    .toolbar-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .print-btn {
+      height: 40px;
+      min-width: 178px;
+      border: 1.5px solid var(--green-strong);
+      border-radius: 4px;
+      background: transparent;
+      color: var(--green);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .print-btn:hover {
+      background: var(--green-soft);
+      border-color: var(--green);
+    }
+
+    .page {
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--bg);
+      border: 1px solid var(--green-line);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
+      position: relative;
+    }
+
+    .page::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 255, 136, 0.026) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 136, 0.026) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .resume {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .topbar {
+      padding: 10.5mm 13mm 8mm;
+      border-bottom: 1px solid var(--green-line);
+      border-left: 5px solid var(--green);
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .name-row {
+      display: grid;
+      grid-template-columns: 1fr 66mm;
+      gap: 14px;
+      align-items: start;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-size: 31px;
+      line-height: 1;
+      letter-spacing: 2.4px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .headline {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+      margin-bottom: 9px;
+    }
+
+    .contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      color: var(--muted);
+      font-size: 11.2px;
+      line-height: 1.35;
+    }
+
+    .status-card {
+      justify-self: end;
+      display: grid;
+      gap: 7px;
+      min-width: 54mm;
+    }
+
+    .status-card span {
+      border: 1px solid var(--green-line);
+      background: var(--green-soft);
+      color: var(--green);
+      border-radius: 3px;
+      padding: 6px 9px;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 1.3px;
+      text-align: center;
+      text-transform: uppercase;
+    }
+
+    .status-card span:nth-child(2) {
+      color: var(--gold);
+      border-color: rgba(242, 193, 78, 0.36);
+      background: rgba(242, 193, 78, 0.07);
+    }
+
+    .body-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 63mm 1fr;
+      min-height: 0;
+    }
+
+    aside {
+      border-right: 1px solid var(--green-line);
+      padding: 7mm 7mm 6mm;
+      background: rgba(0, 255, 136, 0.018);
+    }
+
+    main {
+      padding: 7mm 8mm 6mm;
+    }
+
+    .section {
+      margin-bottom: 7.5px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--green);
+      font-size: 10.5px;
+      font-weight: 900;
+      letter-spacing: 2.6px;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid var(--green-line);
+    }
+
+    .title::before {
+      content: "//";
+      color: var(--dim);
+      letter-spacing: 0;
+    }
+
+    .summary {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.48;
+    }
+
+    .summary strong,
+    strong {
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .card-list {
+      display: grid;
+      gap: 5px;
+    }
+
+    .skill-card,
+    .mini-card {
+      border: 1px solid var(--green-line);
+      background: var(--panel-2);
+      border-radius: 4px;
+      padding: 6px 8px;
+    }
+
+    .skill-card h3,
+    .mini-card h3 {
+      color: #ffffff;
+      font-size: 11.4px;
+      line-height: 1.2;
+      margin-bottom: 3px;
+    }
+
+    .skill-card p,
+    .mini-card p {
+      color: var(--muted);
+      font-size: 10.2px;
+      line-height: 1.25;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .tag {
+      border: 1px solid var(--green-line);
+      border-radius: 3px;
+      background: var(--green-soft);
+      color: var(--text);
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1.1;
+      padding: 4px 5.5px;
+    }
+
+    .tag.hot {
+      color: var(--green);
+      border-color: var(--green-strong);
+    }
+
+    .item {
+      border-bottom: 1px solid var(--green-line);
+      padding-bottom: 7px;
+      margin-bottom: 7px;
+    }
+
+    .item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .item-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: baseline;
+      margin-bottom: 3px;
+    }
+
+    .role,
+    .project,
+    .degree,
+    .cert {
+      color: #ffffff;
+      font-size: 12.5px;
+      font-weight: 900;
+      line-height: 1.2;
+    }
+
+    .date {
+      color: var(--green);
+      font-size: 10.5px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .org,
+    .meta {
+      color: var(--dim);
+      font-size: 11.2px;
+      line-height: 1.32;
+      margin-bottom: 4px;
+    }
+
+    .line {
+      color: var(--muted);
+      font-size: 11.3px;
+      line-height: 1.36;
+      margin-bottom: 2.5px;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      color: var(--muted);
+      font-size: 11.3px;
+      line-height: 1.34;
+      padding-left: 13px;
+      margin-bottom: 3px;
+    }
+
+    li::before {
+      content: ">";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .compact-stack {
+      display: grid;
+      gap: 5px;
+    }
+
+    .footer {
+      border-top: 1px solid var(--green-line);
+      padding: 5px 13mm;
+      display: flex;
+      justify-content: space-between;
+      color: var(--dim);
+      font-size: 9.8px;
+      background: rgba(0, 0, 0, 0.18);
+    }
+
+    .footer span:first-child,
+    .footer span:last-child {
+      color: var(--green);
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        padding: 0;
+        background: #ffffff;
+      }
+
+      .toolbar {
+        display: none !important;
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        box-shadow: none;
+        border: 0;
+        background: #ffffff;
+        color: #111111;
+      }
+
+      .page::before {
+        display: none;
+      }
+
+      .resume,
+      .topbar,
+      aside,
+      main,
+      .footer {
+        background: #ffffff !important;
+        color: #111111 !important;
+      }
+
+      .topbar {
+        border-left: 0;
+        border-bottom: 2px solid #111111;
+        padding: 11mm 13mm 8mm;
+      }
+
+      .name-row {
+        grid-template-columns: 1fr 62mm;
+      }
+
+      h1 {
+        color: #111111 !important;
+      }
+
+      .headline {
+        color: #222222 !important;
+      }
+
+      .contact,
+      .summary,
+      .skill-card p,
+      .mini-card p,
+      .org,
+      .meta,
+      .line,
+      li,
+      .footer {
+        color: #444444 !important;
+      }
+
+      .status-card span,
+      .skill-card,
+      .mini-card,
+      .tag {
+        background: #ffffff !important;
+        color: #111111 !important;
+        border-color: #cccccc !important;
+      }
+
+      .title {
+        color: #111111 !important;
+        border-bottom-color: #cccccc !important;
+      }
+
+      .title::before,
+      li::before,
+      .date,
+      .footer span:first-child,
+      .footer span:last-child {
+        color: #111111 !important;
+      }
+
+      aside {
+        border-right-color: #cccccc;
+      }
+
+      .item {
+        border-bottom-color: #dddddd;
+      }
+
+      .role,
+      .project,
+      .degree,
+      .cert,
+      .skill-card h3,
+      .mini-card h3,
+      strong {
+        color: #111111 !important;
+        font-weight: 800;
+      }
+
+      .footer {
+        border-top-color: #cccccc;
+      }
+
+      * {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="toolbar">
+    <div class="toolbar-title">
+      <span class="dot"></span>
+      <span>cybersecurity-resume.html</span>
+    </div>
+    <button class="print-btn" onclick="window.print()">Print / Save PDF</button>
+  </div>
+
+  <div class="page">
+    <article class="resume">
+      <header class="topbar">
+        <div class="name-row">
+          <div>
+            <h1>Nitesh Sharma</h1>
+            <div class="headline">Cybersecurity Intern | Ethical Hacking | Web Security</div>
+            <div class="contact">
+              <span><a href="https://github.com/Nitesh18k" target="_blank">GitHub</a></span>
+              <span><a href="www.linkedin.com/in/nitesh-sharma09" target="_blank">LinkedIn</a></span>
+              <span>ns974560@gmail.com</span>
+              <span>+91 8302023138</span>
+            </div>
+          </div>
+          <div class="status-card">
+            <span>Vulnerability Assessment</span>
+            <span>Digital Forensics</span>
+            <span>Web-Application Security</span>
+          </div>
+        </div>
+      </header>
+
+      <div class="body-grid">
+        <aside>
+          <section class="section">
+            <h2 class="title">Core Skills</h2>
+            <div class="card-list">
+              <div class="skill-card">
+                <h3>Penetration Testing</h3>
+                <p>Manual testing, exploitation concepts, and vulnerability validation.</p>
+              </div>
+              <div class="skill-card">
+                <h3>Web Application Security</h3>
+                <p>Burp Suite testing, issue identification, and mitigation support.</p>
+              </div>
+              <div class="skill-card">
+                <h3>Network Security</h3>
+                <p>Network scanning, risk analysis, and security assessment workflow.</p>
+              </div>
+              <div class="skill-card">
+                <h3>Digital Forensics</h3>
+                <p>Metadata analysis, IP tracing, OSINT, and data extraction tasks.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Tools</h2>
+            <div class="tags">
+              <span class="tag hot">Burp Suite</span>
+              <span class="tag hot">Nmap</span>
+              <span class="tag">Hydra</span>
+              <span class="tag">Hax Editor</span>
+              <span class="tag">Metasploit</span>
+              <span class="tag">OSINT</span>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Certifications</h2>
+            <div class="compact-stack">
+              <div class="mini-card">
+                <h3>Certified Network Defender C|ND</h3>
+                <p>EC-Council</p>
+              </div>
+              <div class="mini-card">
+                <h3>Cisco Certified Ethical Hacker CCEH</h3>
+                <p>Cisco</p>
+              </div>
+              <div class="mini-card">
+                <h3>Jr. Penetration Tester Certificate</h3>
+                <p>TryHackMe</p>
+              </div>
+              <div class="mini-card">
+                <h3>Cybersecurity</h3>
+                <p>ICT Academy</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Education</h2>
+            <div class="compact-stack">
+              <div class="mini-card">
+                <h3>M.C.A</h3>
+                <p>JECRC University, Jaipur</p>
+                <p>2025 - 2027 | Pursuing</p>
+              </div>
+              <div class="mini-card">
+                <h3>B.C.A</h3>
+                <p>Rajasthan University, Jaipur</p>
+                <p>2022 - 2025 | 67%</p>
+              </div>
+            </div>
+          </section>
+        </aside>
+
+        <main>
+          <section class="section">
+            <h2 class="title">Professional Summary</h2>
+            <p class="summary">
+              Cybersecurity enthusiast with hands-on internship experience in <strong>vulnerability assessment</strong>,
+              network scanning, and web application security. Skilled in manual testing and Burp Suite, with practical
+              exposure to identifying risks, supporting incident response, and improving system security.
+            </p>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Work Experience</h2>
+            <div class="item">
+              <div class="item-head">
+                <div class="role">Cybersecurity Intern</div>
+                <div class="date">Oct 2025 - Dec 2025</div>
+              </div>
+              <div class="org">ApexPlanet Software Pvt. Ltd. | Cyber Security & Ethical Hacking</div>
+              <p class="line"><strong>Work:</strong> Network scanning, vulnerability assessment, web security testing,
+                and basic exploitation.</p>
+              <p class="line"><strong>Skills/Tools:</strong> Nmap, Burp Suite, vulnerability analysis, web app security.
+              </p>
+            </div>
+
+            <div class="item">
+              <div class="item-head">
+                <div class="role">Cybersecurity Intern</div>
+                <div class="date">Jan 2026 - Jan 2026</div>
+              </div>
+              <div class="org">UpToSkills | Cyber Security</div>
+              <p class="line"><strong>Work:</strong> Security testing, threat analysis, web application security, issue
+                identification, and mitigation support.</p>
+              <p class="line"><strong>Skills/Tools:</strong> Burp Suite, manual testing, risk analysis, web security
+                concepts.</p>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Achievements / Activities</h2>
+            <div class="item">
+              <div class="item-head">
+                <div class="role">PRAGYAN-2026 | Xpress Hackathon</div>
+                <div class="date">Apr 2026</div>
+              </div>
+              <div class="org">Forensic Science & Cyber Intelligence | GSI 4.0</div>
+              <p class="line"><strong>Work:</strong> Performed digital forensics, metadata analysis, IP tracing, and
+                data extraction.</p>
+              <p class="line"><strong>Skills/Tools:</strong> Hax Editor, Exif Tool, Geo Location, OSINT, critical
+                thinking.</p>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Projects</h2>
+            <div class="item">
+              <div class="item-head">
+                <div class="project">Cyber-Zone</div>
+                <div class="date">Sep 2024</div>
+              </div>
+              <div class="org">Cybersecurity blogging platform</div>
+              <ul>
+                <li>Introduced Cyber-Zone, a dedicated blogging platform focused on cybersecurity.</li>
+                <li>Covers latest cyber threats, attacks, and emerging security risks.</li>
+                <li>Shares practical defense strategies and awareness-driven insights.</li>
+                <li>Aims to educate users and promote a safer digital environment.</li>
+              </ul>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Security Focus</h2>
+            <div class="two-col">
+              <div class="mini-card">
+                <h3>Assessment Workflow</h3>
+                <p>Reconnaissance, scanning, manual verification, risk analysis, and mitigation notes.</p>
+              </div>
+              <div class="mini-card">
+                <h3>Investigation Areas</h3>
+                <p>Threat analysis, metadata review, IP tracing, OSINT, and web security issue discovery.</p>
+              </div>
+            </div>
+          </section>
+
+          <section class="section">
+            <h2 class="title">Technical Areas</h2>
+            <div class="tags">
+              <span class="tag hot">Penetration Testing</span>
+              <span class="tag hot">Ethical Hacking</span>
+              <span class="tag">Network Security</span>
+              <span class="tag">Network Scanning</span>
+              <span class="tag">Exploitation Techniques</span>
+              <span class="tag">Web App Security</span>
+              <span class="tag">Manual Testing</span>
+              <span class="tag">Risk Analysis</span>
+              <span class="tag">Threat Analysis</span>
+              <span class="tag">Digital Forensics</span>
+              <span class="tag">Incident Support</span>
+            </div>
+          </section>
+        </main>
+      </div>
+
+      <footer class="footer">
+        <span>nitesh@security:~$</span>
+        <span>Vulnerability Assessment | Web Security | Digital Forensics</span>
+        <span>[ OPEN TO CYBERSECURITY ROLES ]</span>
+      </footer>
+    </article>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nitesh Sharma Resume</title>
+  <style>
+    :root {
+      --cyber-bg: #020805;
+      --cyber-line: #00ff85;
+      --cyber-soft: rgba(0, 255, 133, 0.18);
+      --cyber-panel: #06120c;
+      --cyber-text: #d8ffe9;
+      --cyber-muted: #8ff0bd;
+      --ink: #111111;
+      --muted: #333333;
+      --rule: #1f1f1f;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(0, 255, 133, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 133, 0.04) 1px, transparent 1px),
+        radial-gradient(circle at top left, rgba(0, 255, 133, 0.16), transparent 26rem),
+        radial-gradient(circle at bottom right, rgba(0, 140, 78, 0.2), transparent 24rem),
+        var(--cyber-bg);
+      background-size: 32px 32px, 32px 32px, auto, auto;
+      color: var(--cyber-text);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .toolbar {
+      width: min(100%, 900px);
+      margin: 0 auto;
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--cyber-line);
+      font: 700 14px Consolas, "Courier New", monospace;
+      letter-spacing: 1px;
+    }
+
+    .toolbar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .toolbar span::before {
+      content: "";
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--cyber-line);
+      box-shadow: 0 0 16px var(--cyber-line);
+    }
+
+    .print-button {
+      border: 1px solid var(--cyber-line);
+      border-radius: 4px;
+      padding: 10px 14px;
+      color: var(--cyber-line);
+      background: rgba(0, 255, 133, 0.06);
+      cursor: pointer;
+      font: 800 13px Consolas, "Courier New", monospace;
+      letter-spacing: 2px;
+    }
+
+    .print-button:hover {
+      background: rgba(0, 255, 133, 0.15);
+    }
+
+    .sheet-wrap {
+      width: min(100%, 900px);
+      margin: 8px auto 42px;
+      padding: 18px;
+      border: 1px solid var(--cyber-soft);
+      background: rgba(0, 255, 133, 0.025);
+      box-shadow: 0 0 38px rgba(0, 255, 133, 0.14);
+    }
+
+    .resume-sheet {
+      width: 210mm;
+      min-height: 297mm;
+      margin: 0 auto;
+      padding: 17mm 18mm 15mm;
+      background:
+        linear-gradient(rgba(0, 255, 133, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 133, 0.025) 1px, transparent 1px),
+        var(--cyber-panel);
+      background-size: 24px 24px, 24px 24px, auto;
+      color: var(--cyber-text);
+      border: 1px solid rgba(0, 255, 133, 0.45);
+      box-shadow: 0 12px 34px rgba(0, 0, 0, 0.55), 0 0 22px rgba(0, 255, 133, 0.16);
+      font-size: 10.6pt;
+      line-height: 1.28;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0 0 5px;
+      font-size: 22pt;
+      line-height: 1;
+      letter-spacing: 0;
+      font-weight: 700;
+    }
+
+    .contact {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      color: var(--ink);
+      font-size: 10.5pt;
+    }
+
+    .contact a,
+    .contact span {
+      color: var(--cyber-muted);
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      color: var(--cyber-line);
+      text-decoration: underline;
+    }
+
+    .contact a:not(:last-child)::after,
+    .contact span:not(:last-child)::after {
+      content: "|";
+      display: inline-block;
+      margin: 0 7px;
+      color: var(--cyber-line);
+    }
+
+    section {
+      margin-top: 8px;
+    }
+
+    h2 {
+      margin: 0 0 4px;
+      padding-bottom: 2px;
+      border-bottom: 1px solid var(--cyber-soft);
+      color: var(--cyber-line);
+      font-size: 12pt;
+      line-height: 1.1;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .entry {
+      margin-top: 5px;
+    }
+
+    .entry-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      font-weight: 700;
+    }
+
+    .date {
+      white-space: nowrap;
+      font-weight: 700;
+    }
+
+    .org {
+      margin-top: 1px;
+      color: var(--cyber-muted);
+    }
+
+    ul {
+      margin: 2px 0 0 18px;
+      padding: 0;
+    }
+
+    li {
+      margin: 1px 0;
+      padding-left: 1px;
+    }
+
+    .education-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      column-gap: 16px;
+      margin-top: 4px;
+    }
+
+    .skills-line {
+      margin-top: 3px;
+    }
+
+    @media (max-width: 860px) {
+      .resume-sheet {
+        width: 100%;
+        min-height: auto;
+        padding: 28px 24px;
+      }
+
+      .sheet-wrap {
+        padding: 10px;
+      }
+    }
+
+    @page {
+      size: A4;
+      margin: 0;
+    }
+
+    @media print {
+      html,
+      body {
+        width: 210mm;
+        height: 297mm;
+        margin: 0;
+        background: #ffffff;
+      }
+
+      .toolbar,
+      .sheet-wrap {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .toolbar {
+        display: none;
+      }
+
+      .resume-sheet {
+        width: 210mm;
+        height: 297mm;
+        min-height: 297mm;
+        margin: 0;
+        padding: 14mm 16mm 12mm;
+        background: #ffffff;
+        color: var(--ink);
+        border: 0;
+        box-shadow: none;
+        overflow: hidden;
+        font-size: 10pt;
+        line-height: 1.2;
+      }
+
+      .contact a,
+      .contact span {
+        color: var(--ink);
+      }
+
+      .contact a:not(:last-child)::after,
+      .contact span:not(:last-child)::after {
+        color: var(--muted);
+      }
+
+      h2 {
+        border-bottom: 1px solid var(--rule);
+        color: var(--ink);
+      }
+
+      .org {
+        color: var(--ink);
+      }
+
+      h1 {
+        font-size: 21pt;
+      }
+
+      h2 {
+        font-size: 11.5pt;
+      }
+
+      section {
+        margin-top: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbar">
+    <span>cybersecurity-resume.html</span>
+    <button class="print-button" type="button" onclick="window.print()">PRINT / SAVE PDF</button>
+  </div>
+
+  <main class="sheet-wrap">
+    <article class="resume-sheet">
+      <header>
+        <h1>Nitesh Sharma</h1>
+        <nav class="contact" aria-label="Contact links">
+          <a href="https://github.com/Nitesh18k" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="www.linkedin.com/in/nitesh-sharma09" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="mailto:ns974560@gmail.com">ns974560@gmail.com</a>
+          <a href="tel:+918302023138">+91 8302023138</a>
+        </nav>
+      </header>
+
+      <section>
+        <h2>Professional Summary</h2>
+        <p>Cybersecurity enthusiast with hands-on internship experience in vulnerability assessment, network scanning, and web application security. Skilled in manual testing and Burp Suite, with practical exposure to identifying risks, supporting incident response, and improving system security.</p>
+      </section>
+
+      <section>
+        <h2>Work Experience</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <span>Cyber Security &amp; Ethical Hacking Intern</span>
+            <span class="date">Oct 2025 - Dec 2025</span>
+          </div>
+          <p class="org">ApexPlanet Software Pvt. Ltd.</p>
+          <ul>
+            <li>Performed network scanning, vulnerability assessment, and web application security testing.</li>
+            <li>Assisted in basic exploitation and security analysis.</li>
+            <li>Tools: Nmap, Burp Suite, vulnerability analysis.</li>
+          </ul>
+        </div>
+
+        <div class="entry">
+          <div class="entry-head">
+            <span>Cyber Security Intern</span>
+            <span class="date">Jan 2026 - Apr 2026</span>
+          </div>
+          <p class="org">UpToSkills</p>
+          <ul>
+            <li>Worked on security testing, threat analysis, and vulnerability identification.</li>
+            <li>Supported mitigation strategies for web application security issues.</li>
+            <li>Tools: Burp Suite, manual testing, risk analysis.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Projects</h2>
+        <div class="entry">
+          <div class="entry-head">
+            <span>Cyber-Zone (Blogging Platform)</span>
+            <span class="date">Sep 2024</span>
+          </div>
+          <ul>
+            <li>Developed a cybersecurity-focused blogging platform.</li>
+            <li>Covers cyber threats, attacks, and security awareness content.</li>
+            <li>Provides defense strategies and cybersecurity insights.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section>
+        <h2>Achievements</h2>
+        <ul>
+          <li>Secured 6th rank among 25 teams at a national-level competition in PRAGYAN-2026 (Xpress Hackathon) under Forensic Science &amp; Cyber Intelligence (GSI 4.0), performing digital forensics, metadata analysis, IP tracing, and data extraction using tools like HxD Editor and ExifTool.</li>
+          <li>Applied OSINT techniques to real-world cyber investigation scenarios, strengthening analytical thinking, problem-solving, and cyber intelligence skills.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Education</h2>
+        <div class="education-row">
+          <div><strong>MCA - Cyber Security (Pursuing)</strong> &nbsp; JECRC University, Jaipur</div>
+          <div>2025 - 2027</div>
+        </div>
+        <div class="education-row">
+          <div><strong>BCA</strong> &nbsp; Rajasthan University, Jaipur</div>
+          <div>2022 - 2025 &nbsp; 67%</div>
+        </div>
+      </section>
+
+      <section>
+        <h2>Certifications</h2>
+        <ul>
+          <li>Certified Network Defender (C|ND) - EC-Council</li>
+          <li>Cisco Certified Ethical Hacker (CCEH)</li>
+          <li>Jr. Penetration Tester - TryHackMe</li>
+          <li>Cybersecurity - ICT Academy</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>Skills</h2>
+        <p class="skills-line">Penetration Testing | Ethical Hacking | Network Security | Network Scanning | Exploitation Techniques</p>
+      </section>
+    </article>
+  </main>
+</body>
+</html>
